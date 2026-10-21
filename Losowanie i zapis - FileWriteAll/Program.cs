@@ -10,14 +10,14 @@
        
         int suma = 0;
         int srednia = 0;
-        int[] wylosowane = new int[101];
+        int[] wylosowane = new int[100];
         string lotto = "";
         string lotto1 = "";
 
         Random losowa = new Random();
         for (int i = 0; i < wylosowane.Length; i++)
         {
-            wylosowane[i] = losowa.Next(0, 1001);
+            wylosowane[i] = losowa.Next(1, 1001);
             
             suma += wylosowane[i];
             lotto += wylosowane[i] + "\n";
@@ -40,9 +40,16 @@
             }
 
         }
-        File.WriteAllText("liczby.txt",lotto);
-        string odczyt = File.ReadAllText("liczby.txt");
-        Console.Write(odczyt);
+        try
+        {
+            File.WriteAllText("liczby.txt", lotto);
+            string odczyt = File.ReadAllText("liczby.txt");
+            Console.Write(odczyt);
+        } catch(Exception)
+        {
+            Console.WriteLine("Wystąpił problem z obsługą pliku!");
+        }
+
         Console.WriteLine("Suma: " + suma);
         Console.WriteLine("Średnia: " + srednia);
         Console.WriteLine("Min: " + min);
